@@ -1,7 +1,7 @@
 services:
   web:
     image: nginx:1.27-alpine
-    container_name: rateradear-web
+    container_name: rateradar-web
     ports:
       - "8080:80"
     volumes:
@@ -11,7 +11,7 @@ services:
 
   updater:
     image: node:20-alpine
-    container_name: rateradear-updater
+    container_name: rateradar-updater
     working_dir: /app
     environment:
       EXCHANGE_RATE_API_KEY: ${EXCHANGE_RATE_API_KEY:-}

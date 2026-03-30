@@ -1,6 +1,6 @@
-# RateRadear
+# RateRadar
 
-RateRadear 是一个零成本汇率决策仪表盘：
+RateRadar 是一个零成本汇率决策仪表盘：
 
 - 支持基准货币：人民币 CNY、港元 HKD、美元 USD。
 - 支持方向切换：
@@ -114,7 +114,7 @@ docker compose run --rm updater
 ```bash
 git init
 git add .
-git commit -m "feat: init RateRadear"
+git commit -m "feat: init RateRadar"
 git branch -M main
 git remote add origin <你的仓库地址>
 git push -u origin main
