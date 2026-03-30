@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RateRadear | 汇率雷达</title>
+    <meta name="description" content="人民币/港元/美元与主流货币的结售汇分位数决策仪表盘" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Outfit:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script defer type="module" src="./assets/app.js"></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <main class="container">
+      <header class="hero card-rise">
+        <div>
+          <p class="badge">RateRadear · 汇率雷达</p>
+          <h1>多基准货币结售汇决策面板</h1>
+          <p class="hero-text">
+            支持以人民币、港元、美元作为基准货币进行买入与换回；
+            用历史分位数告诉你当前是偏便宜还是偏昂贵。
+          </p>
+        </div>
+        <div class="hero-meta">
+          <p id="lastUpdated">数据更新时间：--</p>
+          <p id="dataCoverage">历史覆盖：--</p>
+        </div>
+      </header>
+
+      <section class="panel controls card-rise">
+        <div class="field-group">
+          <label for="baseCurrency">基准货币（我持有）</label>
+          <select id="baseCurrency"></select>
+        </div>
+
+        <div class="field-group">
+          <label for="quoteCurrency">目标货币（我要换）</label>
+          <select id="quoteCurrency"></select>
+        </div>
+
+        <div class="mode-switch" role="group" aria-label="结售汇方向">
+          <button class="mode-btn active" data-mode="buy" type="button">用基准货币买目标货币</button>
+          <button class="mode-btn" data-mode="sell" type="button">把目标货币换回基准货币</button>
+        </div>
+
+        <p id="modeDescription" class="mode-description"></p>
+      </section>
+
+      <section class="summary-grid">
+        <article class="panel metric-card card-rise">
+          <h2 id="pairTitle">当前组合</h2>
+          <p id="pairSub">--</p>
+          <p id="pricePrimary" class="metric-value">--</p>
+          <p id="priceSecondary" class="metric-sub">--</p>
+        </article>
+
+        <article class="panel metric-card card-rise">
+          <h2>换汇划算指数</h2>
+          <p id="indexScore" class="metric-value">--</p>
+          <p id="indexStars" class="metric-sub">--</p>
+        </article>
+
+        <article class="panel metric-card card-rise">
+          <h2>本年表现</h2>
+          <p id="yearPercentBig" class="metric-value">--</p>
+          <p class="metric-sub">优于本年时间占比</p>
+        </article>
+      </section>
+
+      <section class="panel card-rise">
+        <div class="section-head">
+          <h2>历史分位数（四维）</h2>
+          <p>数值越高，代表在当前方向下越划算</p>
+        </div>
+        <div id="percentileRows" class="percentile-rows"></div>
+      </section>
+
+      <section class="panel card-rise">
+        <div class="section-head">
+          <h2>实时行情看板</h2>
+          <p>核心货币对最新值与日变化</p>
+        </div>
+        <div class="board-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>货币对</th>
+                <th>最新值</th>
+                <th>较上一交易日</th>
+              </tr>
+            </thead>
+            <tbody id="realtimeBoardBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel card-rise">
+        <div class="chart-header">
+          <div>
+            <h2>历史走势图</h2>
+            <p id="chartCaption">--</p>
+          </div>
+          <div class="range-switch" role="group" aria-label="走势图范围">
+            <button class="range-btn active" data-range="30" type="button">近30天</button>
+            <button class="range-btn" data-range="365" type="button">近365天</button>
+          </div>
+        </div>
+        <canvas id="trendChart" height="120"></canvas>
+      </section>
+
+      <section class="panel strategy-panel card-rise">
+        <div class="section-head">
+          <h2>省钱策略提示</h2>
+          <p>结合方向、分位数和波动位置自动生成</p>
+        </div>
+        <p id="strategyText" class="strategy-title">--</p>
+        <ul id="strategyBullets" class="strategy-list"></ul>
+      </section>
+    </main>
+  </body>
+</html>

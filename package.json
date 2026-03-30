@@ -1,0 +1,14 @@
+{
+  "name": "rateradear",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch:rates": "node scripts/fetch_rates.mjs",
+    "validate:data": "node scripts/validate_history.mjs",
+    "docker:start": "docker compose run --rm updater && docker compose up web -d",
+    "docker:web": "docker compose up web -d",
+    "docker:fetch": "docker compose run --rm updater",
+    "docker:down": "docker compose down"
+  }
+}
